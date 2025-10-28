@@ -1,6 +1,6 @@
 from error import PigLatinError
 
-
+VOWELS = "aeiouy"
 class PigLatinTranslator:
 
     def __init__(self, phrase: str):
@@ -9,15 +9,20 @@ class PigLatinTranslator:
         :param phrase: the phrase.
         :raise PigLatinError: for any error situation.
         """
-
+        self.phrase = phrase
     def get_phrase(self) -> str:
         """
         Returns the phrase.
         :return: the phrase.
         """
-
+        return self.phrase
     def translate(self) -> str:
         """
         Returns the Pig Latin translation of the phrase.
         :return: the translation.
         """
+        if self.phrase == "":
+            return "nil"
+        first_letter = self.phrase[0]
+        if first_letter in VOWELS:
+            return self.phrase + "nay"
