@@ -24,3 +24,4 @@ class TestPigLatinTranslator(TestCase):
         translator = PigLatinTranslator("enemy")
         translation = translator.translate()
         self.assertEqual("enemynay", translation)
+
