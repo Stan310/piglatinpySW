@@ -1,4 +1,4 @@
-from src.error import PigLatinError
+from error import PigLatinError
 
 
 class PigLatinTranslator:
