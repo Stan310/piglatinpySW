@@ -23,36 +23,49 @@ class PigLatinTranslator:
         """
         if self.phrase == "":
             return "nil"
-        first_letter = self.phrase[0]
-        last_letter = self.phrase[-1]
+        words = self.phrase.split()
+        translation = ""
+
+        for word in words:
+            translation += PigLatinTranslator.translate_word(word) + " "
+        return translation.rstrip()
+
+    def translate_word(word: str) ->str:
+        first_letter = word[0]
+        last_letter = word[-1]
         if first_letter in VOWELS and last_letter == "y":
-            return self.phrase + "nay"
+            return word + "nay"
         elif first_letter in VOWELS and last_letter in "aeiou":
-            return translate_phrase_starting_with_vowel(self.phrase)
+            return PigLatinTranslator.translate_phrase_starting_with_vowel(word)
         elif first_letter in CONSONANTS:
-         return translate_phrase_starting_with_consonant(self.phrase)
-        return "No translation"
+            return PigLatinTranslator.translate_phrase_starting_with_consonant(word)
 
 
-def translate_phrase_starting_with_consonant(word):
-    n_consonants = 0
-    for letter in word:
-        if letter in CONSONANTS:
-            n_consonants += 1
+    def translate_phrase_starting_with_consonant(word):
+        n_consonants = 0
+        for letter in word:
+            if letter in CONSONANTS:
+                n_consonants += 1
+            else:
+                break
+        starting_consonants = word[:n_consonants]
+        substring = word[n_consonants:]
+        return substring + starting_consonants + "ay"
+
+
+
+
+    def translate_phrase_starting_with_vowel(word):
+        last_letter = word[-1]
+        if last_letter == "y":
+            return word + "nay"
+        elif last_letter in VOWELS:
+            return word + "yay"
         else:
-            break
-    starting_consonants = word[:n_consonants]
-    substring = word[n_consonants:]
-    return substring + starting_consonants + "ay"
+            return word + "ay"
 
 
 
 
-def translate_phrase_starting_with_vowel(word):
-    last_letter = word[-1]
-    if last_letter == "y":
-        return word + "nay"
-    elif last_letter in VOWELS:
-        return word + "yay"
-    else:
-        return word + "ay"
+
+
