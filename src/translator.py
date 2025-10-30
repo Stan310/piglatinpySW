@@ -1,6 +1,7 @@
 from error import PigLatinError
 CONSONANTS = "bcdfghjklmnpqrstqvwyxz"
 VOWELS = "aeiouy"
+PUNCTUATION_MARKS = ".,?!;:()"
 class PigLatinTranslator:
 
     def __init__(self, phrase: str):
@@ -27,7 +28,7 @@ class PigLatinTranslator:
         translation = ""
 
         for i,char in enumerate(self.phrase):
-            if char == " " or char == "-":
+            if char == " " or char == "-" or char in PUNCTUATION_MARKS:
                 translation += PigLatinTranslator.translate_word(word)+char
                 word = ""
             elif i == len(self.phrase)-1:
