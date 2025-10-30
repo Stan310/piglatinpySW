@@ -1,5 +1,5 @@
 from error import PigLatinError
-
+CONSONANTS = "bcdfghjklmnpqrst"
 VOWELS = "aeiouy"
 class PigLatinTranslator:
 
@@ -29,5 +29,8 @@ class PigLatinTranslator:
             return self.phrase + "nay"
         elif first_letter in VOWELS and last_letter in "aeiou":
             return self.phrase + "yay"
-        else:
+        elif first_letter in CONSONANTS:
             return self.phrase[1:-1] + self.phrase[-1] + self.phrase[0] + "ay"
+
+    def translate_word_starting_with_vowel(word):
+        last_letter = word[-1]
