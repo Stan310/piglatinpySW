@@ -28,9 +28,25 @@ class PigLatinTranslator:
         if first_letter in VOWELS and last_letter == "y":
             return self.phrase + "nay"
         elif first_letter in VOWELS and last_letter in "aeiou":
-            return self.phrase + "yay"
+            return translate_phrase_starting_with_vowel(self.phrase)
         elif first_letter in CONSONANTS:
-            return self.phrase[1:-1] + self.phrase[-1] + self.phrase[0] + "ay"
+         return translate_phrase_starting_with_consonant(self.phrase)
+        return "No translation"
 
-    def translate_word_starting_with_vowel(word):
-        last_letter = word[-1]
+
+def translate_phrase_starting_with_consonant(word):
+
+    first_letter = word[0]
+    substring = word[1:]
+    return substring + first_letter + "ay"
+
+
+
+def translate_phrase_starting_with_vowel(word):
+    last_letter = word[-1]
+    if last_letter == "y":
+        return word + "nay"
+    elif last_letter in VOWELS:
+        return word + "yay"
+    else:
+        return word + "ay"
