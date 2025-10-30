@@ -1,5 +1,5 @@
 from error import PigLatinError
-CONSONANTS = "bcdfghjklmnpqrst"
+CONSONANTS = "bcdfghjklmnpqrstqvwyxz"
 VOWELS = "aeiouy"
 class PigLatinTranslator:
 
@@ -35,10 +35,16 @@ class PigLatinTranslator:
 
 
 def translate_phrase_starting_with_consonant(word):
+    n_consonants = 0
+    for letter in word:
+        if letter in CONSONANTS:
+            n_consonants += 1
+        else:
+            break
+    starting_consonants = word[:n_consonants]
+    substring = word[n_consonants:]
+    return substring + starting_consonants + "ay"
 
-    first_letter = word[0]
-    substring = word[1:]
-    return substring + first_letter + "ay"
 
 
 

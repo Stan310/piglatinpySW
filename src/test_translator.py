@@ -38,4 +38,16 @@ class TestPigLatinTranslator(TestCase):
     def test_translate_phrase_starting_with_more_consonants(self):
         translator = PigLatinTranslator("gni")
         translation = translator.translate()
-        self.assertEqual("nigay", translation)
+        self.assertEqual("ignay", translation)
+
+
+    def test_translate_phrase_starting_with_even_more_consonants(self):
+        translator = PigLatinTranslator("spring")
+        translation = translator.translate()
+        self.assertEqual("ingspray", translation)
+
+    def test_translate_consonants_only(self):
+        translator = PigLatinTranslator("fly")
+        translation = translator.translate()
+        self.assertEqual("flyay", translation)
+
