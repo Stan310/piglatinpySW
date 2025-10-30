@@ -66,3 +66,8 @@ class TestPigLatinTranslator(TestCase):
         translator = PigLatinTranslator("hello well-being.")
         translation = translator.translate()
         self.assertEqual("ellohay ellway-eingbay.", translation)
+
+    def test_translate_phrase_with_more_and_more_punctuation(self):
+        translator = PigLatinTranslator("hello, well-being.")
+        translation = translator.translate()
+        self.assertEqual("ellohay, ellway-eingbay.", translation)

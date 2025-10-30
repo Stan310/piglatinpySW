@@ -38,6 +38,8 @@ class PigLatinTranslator:
                 word += char
         return translation
     def translate_word(word: str) ->str:
+        if word == "":
+            return ""
         first_letter = word[0]
         last_letter = word[-1]
         if first_letter in VOWELS and last_letter == "y":
